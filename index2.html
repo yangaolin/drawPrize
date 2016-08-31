@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>叛忍、要塞抽奖系统</title>
+<style type="text/css">
+	*{
+	margin: 0px;
+	padding: 0px;
+	overflow: auto;
+	font-family: Microsoft Yahei;
+	}
+	.content{
+		width: 100%;
+	}
+	.left{
+		width: 100%;
+		color: #fff;
+	}
+	.left ul{
+		width: 100%;
+		border: 1px solid #f6dd34;
+		padding: 2px;
+	}
+	.left ul li{
+		float: left;
+		width: 32%;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background-color: #49ebd6;
+		border: 1px solid #000;
+		margin-top: 2px;
+		cursor: pointer;
+		color: #ffffff;
+	}
+	.middle{
+		height: 100px;
+    		margin-bottom: 20px;
+	}
+	.notice{
+		float: left;
+		width: 200px;
+		height: 80px;
+		line-height: 80px;
+		text-align: center;
+		font-size: 18px;
+		border: 3px solid #fcdc07;
+		border-radius: 15px;
+		background-color: #08fbbf;
+		cursor: pointer;
+		color: #171410;
+		margin-left: 21px;
+		margin-top: 7px;
+	}
+	.middle input{
+		width: 80%;
+	    	height: 50px;
+	    	font-size: 18px;
+	    	margin-top: 19px;
+	    	margin-left: 17px;
+	}
+	.middle .middleBtn{
+		float: left;
+		width: 100px;
+		height: 100px;
+		line-height: 100px;
+		text-align: center;
+		font-size: 25px;
+		border-radius: 50%;
+		background-color: #da997f;
+		margin-left: 61px;
+	}
+	textarea{
+		display: block;
+		width: 90%;
+		height: 100px;
+		margin: 20px auto;
+
+	}
+	h1{
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.luckeyBoys ul{
+		width: 92%;
+		min-height: 125px;
+		border: 2px solid #f6dd34;
+		padding: 10px;
+		margin: 0 auto;
+	}
+	.luckeyBoys ul li{
+		width: 97%;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background-color: #49ebd6;
+		border: 1px solid #000;
+		margin: 2px auto 0px;
+		cursor: pointer;
+		color: #ff0000;
+	}
+</style>
+	<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="content">
+		<div class="left">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<textarea></textarea>
+		<div class="middle">
+			<div class="notice">
+				添加幸运骚年至列表
+			</div>
+			<div class="middleBtn">抽奖</div>
+		</div>
+	</div>
+	<h1>中奖结果</h1>
+	<div class="luckeyBoys">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			var thatTime;
+			$(".notice").click(function  () {
+				var lis = $(".left ul").find("li");
+				var boys = $("textarea").val();
+				boy = boys.split("；")
+				for (var i = 0; i < boy.length; i++) {
+					$(lis[i]).html($(boy)[i]);
+				}
+			})
+			$(".middleBtn").click(function() {
+				if($(this).html()=="抽奖"){
+					$(this).html("停！");
+					thatTime = setInterval(time,300);
+				}else{
+					$(this).html("抽奖");
+					clearInterval(thatTime);
+				}
+				
+			});
+		})
+		function time(){
+			$(".left ul li").css({"color":"#ffffff"});
+			var thatBoys = $(".left ul").find("li");
+
+			var i =Math.floor(Math.random()*15);
+			$(thatBoys[i]).css({"color":"#ff0000"});
+			$(".luckeyBoys li:eq(0)").html($(thatBoys[i]).html());
+			thatBoys.splice(i,1)
+
+			var j =Math.floor(Math.random()*14);
+			$(thatBoys[j]).css({"color":"#ff0000"});
+			$(".luckeyBoys li:eq(1)").html($(thatBoys[j]).html());
+			thatBoys.splice(j,1)
+
+			var k =Math.floor(Math.random()*13);
+			$(thatBoys[k]).css({"color":"#ff0000"});
+			$(".luckeyBoys li:eq(2)").html($(thatBoys[k]).html());
+		}
+		function rgb2hex(rgb) {
+		  rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+		  function hex(x) {
+		    return ("0" + parseInt(x).toString(16)).slice(-2);
+		  }
+		  return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+		}
+	</script>
+</body>
+</html>
